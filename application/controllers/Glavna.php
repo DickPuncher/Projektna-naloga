@@ -5,7 +5,7 @@ class Glavna extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('ustno');
+		$this->load->view('ustno2');
 	}
 
 }
