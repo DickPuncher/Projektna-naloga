@@ -14,8 +14,8 @@
 </head>
 <body>
     <!-- Navigacija -->
-    <div class="container-fluid">
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <img src="<?php echo base_url(); ?>slike/logo.png" style="height: 50px;">
             </div>
@@ -28,8 +28,9 @@
                 <li><a href="#">Spraševanje</a></li>
                 <li><a href="#">Odjava</a></li>
             </ul>
-        </nav>
-    </div>
+        </div>
+    </nav>
+    
 
     <!-- Vsebina -->
     <div class="container-fluid">
