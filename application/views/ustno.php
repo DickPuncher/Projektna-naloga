@@ -14,7 +14,7 @@
 </head>
 <body>
     <!-- Navigacija -->
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <img src="<?php echo base_url(); ?>slike/logo.png" style="height: 50px;">
@@ -30,12 +30,27 @@
             </ul>
         </div>
     </nav>
-    
 
     <!-- Vsebina -->
     <div class="container-fluid">
         <div class="row">
-            <div class="col">fasdfskdhfsd</div>
+            <div class="col-md-3 element">
+                <form action="" method="POST">
+                    <div>predmet</div>
+                    <select name="predmet">
+                        <option value="">RAA</option>
+                        <option value="">NRS</option>
+                    </select>
+                    <br>
+                    <input type="submit" value="Generiraj vprasanje">
+                </form>
+            </div>
+            <div class="col-md-9 vprasanja">
+                odgovor 1<br>
+                odgovor 2<br>
+                odgovor 3<br>
+                odgovor 4<br>
+            </div>
         </div>
     </div>
 
