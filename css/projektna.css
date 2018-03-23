@@ -1,6 +1,7 @@
 .navbar-default, .navbar, .navbar-header{
     background-color:#0A1612;
     border: 0;
+    margin-bottom: 0px !important;
 }
 
 footer{
@@ -23,7 +24,7 @@ body{
 
 .razmik-nav{
     margin-left: 30px;
-
+    float: right;
 }
 
 .vsebina{
@@ -35,12 +36,8 @@ body{
     border: 1px solid black;
 }
 
-.top{
-    margin-top: 0;
-}
-
 .vprasanja{
     background-color: green;
     border: 1px solid black;
-    height: 500px;
+    height: 90vh;
 }

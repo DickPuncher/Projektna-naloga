@@ -4,7 +4,6 @@
 <title>Ustno spraševanje</title>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/projektna.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
@@ -34,6 +33,7 @@
     <!-- Vsebina -->
     <div class="container-fluid">
         <div class="row">
+            <!-- Sekcija za vprasanja -->
             <div class="col-md-3 element">
                 <form action="" method="POST">
                     <div>predmet</div>
@@ -45,6 +45,11 @@
                     <input type="submit" value="Generiraj vprasanje">
                 </form>
             </div>
+
+            <!-- Sekcija za odgovore -->
+
+
+            
             <div class="col-md-9 vprasanja">
                 odgovor 1<br>
                 odgovor 2<br>
