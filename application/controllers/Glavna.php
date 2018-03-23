@@ -8,4 +8,9 @@ class Glavna extends CI_Controller {
 		$this->load->view('ustno2');
 	}
 
+	public function ustno()
+	{
+		$this->load->view('ustno');
+	}
+
 }
