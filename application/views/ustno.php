@@ -33,28 +33,30 @@
     <!-- Vsebina -->
     <div class="container-fluid">
         <div class="row">
+
             <!-- Sekcija za vprasanja -->
             <div class="col-md-3 element">
                 <form action="" method="POST">
-                    <div>predmet</div>
+                    <h1>Predmet</h1>
                     <select name="predmet">
+                        <!-- PHP za predmete -->
                         <option value="">RAA</option>
                         <option value="">NRS</option>
                     </select>
                     <br>
+
                     <input type="submit" value="Generiraj vprasanje">
                 </form>
             </div>
 
             <!-- Sekcija za odgovore -->
-
-
-            
             <div class="col-md-9 vprasanja">
-                odgovor 1<br>
-                odgovor 2<br>
-                odgovor 3<br>
-                odgovor 4<br>
+                <h1 class="naslov">Sekcija za odgovore</h1>
+                <div class="col-md-6 odgovori">Vprasanje 1</div>
+                <div class="col-md-6 odgovori">Vprasanje 2</div>
+                <div class="col-md-6 odgovori">Vprasanje 3</div>
+                <div class="col-md-6 odgovori">Vprasanje 4</div>
+                <div class="col-md-12 poslji">Poslji odgovore</div>
             </div>
         </div>
     </div>
