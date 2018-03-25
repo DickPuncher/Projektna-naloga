@@ -35,7 +35,7 @@
         <div class="row">
 
             <!-- Sekcija za vprasanja -->
-            <div class="col-md-3 element">
+            <div class="col-md-3 vprasanja">
                 <form action="" method="POST">
                     <h1>Predmet</h1>
                     <select name="predmet">
@@ -52,10 +52,10 @@
             <!-- Sekcija za odgovore -->
             <div class="col-md-9 vprasanja">
                 <h1 class="naslov">Sekcija za odgovore</h1>
-                <div class="col-md-6 odgovori">Vprasanje 1</div>
-                <div class="col-md-6 odgovori">Vprasanje 2</div>
-                <div class="col-md-6 odgovori">Vprasanje 3</div>
-                <div class="col-md-6 odgovori">Vprasanje 4</div>
+                <div class="col-md-6 odgovori1">Vprasanje 1</div>
+                <div class="col-md-6 odgovori2">Vprasanje 2</div>
+                <div class="col-md-6 odgovori3">Vprasanje 3</div>
+                <div class="col-md-6 odgovori4">Vprasanje 4</div>
                 <div class="col-md-12 poslji">Poslji odgovore</div>
             </div>
         </div>

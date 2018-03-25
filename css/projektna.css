@@ -27,18 +27,8 @@ body{
     float: right;
 }
 
-.vsebina{
-    background-color: red;
-}
-
-.element{
-    background-color: green;
-    border-right: 1px solid black;
-    height: 90vh;
-}
-
 .vprasanja{
-    background-color: green;
+    background-color: #dcdcdc;
     border-left: 1px solid black;
     height: 90vh;
 }
@@ -47,16 +37,41 @@ body{
     text-align: center;
 }
 
-.odgovori{
+.odgovori1{
     height: 200px;
     border: 1px solid black;
-    background-color: red;
+    background-color: #ffffff;
+}
+
+.odgovori2{
+    height: 200px;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: #ffffff;
+}
+
+.odgovori3{
+    height: 200px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    background-color: #ffffff;
+}
+
+.odgovori4{
+    height: 200px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: #ffffff;
 }
 
 .poslji{
     height: 50px;
-    border: 1px solid black;
-    background-color: blue;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: #ffffff;
     text-align: center;
     font-size: 30px;
 }
