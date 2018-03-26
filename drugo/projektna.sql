@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema projektna
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema projektna
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `projektna` DEFAULT CHARACTER SET utf8 ;
+USE `projektna` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`tip_vprasanj`
+-- Table `projektna`.`tip_vprasanj`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tip_vprasanj` (
+CREATE TABLE IF NOT EXISTS `projektna`.`tip_vprasanj` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `ime_predmeta` VARCHAR(45) NULL,
   `ime_sklopa` VARCHAR(45) NULL,
@@ -29,9 +29,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`vprasanja`
+-- Table `projektna`.`vprasanja`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`vprasanja` (
+CREATE TABLE IF NOT EXISTS `projektna`.`vprasanja` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `vprasanje` VARCHAR(255) NULL,
   `odgovor` VARCHAR(255) NULL,
@@ -41,16 +41,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`vprasanja` (
   INDEX `fk_vprasanja_tip_idx` (`tip_id` ASC),
   CONSTRAINT `fk_vprasanja_tip`
     FOREIGN KEY (`tip_id`)
-    REFERENCES `mydb`.`tip_vprasanj` (`id`)
+    REFERENCES `projektna`.`tip_vprasanj` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`uporabnik`
+-- Table `projektna`.`uporabnik`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`uporabnik` (
+CREATE TABLE IF NOT EXISTS `projektna`.`uporabnik` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `uporabnisko_ime` VARCHAR(45) NULL,
   `geslo` VARCHAR(45) NULL,
@@ -59,9 +59,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`evidenca_vprasanj`
+-- Table `projektna`.`evidenca_vprasanj`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`evidenca_vprasanj` (
+CREATE TABLE IF NOT EXISTS `projektna`.`evidenca_vprasanj` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `kolikokrat` INT NULL,
   `uporabnik_id` INT NOT NULL,
@@ -71,12 +71,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`evidenca_vprasanj` (
   INDEX `fk_evidenca_vprasanj_vprasanja1_idx` (`vprasanja_id` ASC),
   CONSTRAINT `fk_evidenca_vprasanj_uporabnik1`
     FOREIGN KEY (`uporabnik_id`)
-    REFERENCES `mydb`.`uporabnik` (`id`)
+    REFERENCES `projektna`.`uporabnik` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_evidenca_vprasanj_vprasanja1`
     FOREIGN KEY (`vprasanja_id`)
-    REFERENCES `mydb`.`vprasanja` (`id`)
+    REFERENCES `projektna`.`vprasanja` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

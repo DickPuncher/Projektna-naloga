@@ -13,22 +13,7 @@
 </head>
 <body>
     <!-- Navigacija -->
-    <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <img src="<?php echo base_url(); ?>slike/logo.png" style="height: 50px;">
-            </div>
-            <div class="navbar-header">
-                <a class="navbar-brand razmik-brand" href="#">Ustno Spraševanje</a>
-            </div>
-            <ul class="nav navbar-nav razmik-nav">
-                <li class="active"><a href="#">Domov</a></li>
-                <li><a href="#">Dodajanje</a></li>
-                <li><a href="#">Spraševanje</a></li>
-                <li><a href="#">Odjava</a></li>
-            </ul>
-        </div>
-    </nav>
+    <?php include 'glava.php'?>
 
     <!-- Vsebina -->
     <div class="container-fluid">
@@ -40,8 +25,11 @@
                     <h1>Predmet</h1>
                     <select name="predmet">
                         <!-- PHP za predmete -->
-                        <option value="">RAA</option>
-                        <option value="">NRS</option>
+                        <?php 
+                        foreach ($data as $row){
+                            echo "<option value='$row'>$row</option>";
+                        }
+                        ?>
                     </select>
                     <br>
 
