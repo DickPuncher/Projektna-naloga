@@ -13,7 +13,15 @@ class Glavna extends CI_Controller {
 	}
 
 	public function sprasevanje(){
-		$this->load->view('ustno');
+		$this->load->view('sprasevanje');
+	}
+	
+	public function registracija(){
+		$this->load->view('registracija');
+	}
+
+	public function prijava(){
+		$this->load->view('prijava');
 	}
 
 	public function odjava(){

@@ -9,6 +9,8 @@
         <ul class="nav navbar-nav razmik-nav">
             <li><a href="<?php echo base_url();?>index.php/glavna/domov">Domov</a></li>
             <li><a href="<?php echo base_url();?>index.php/glavna/sprasevanje">Spraševanje</a></li>
+            <li><a href="<?php echo base_url();?>index.php/glavna/registracija">Registracija</a></li>
+            <li><a href="<?php echo base_url();?>index.php/glavna/prijava">Prijava</a></li>
             <li><a href="<?php echo base_url();?>index.php/glavna/odjava">Odjava</a></li>
         </ul>
     </div>
