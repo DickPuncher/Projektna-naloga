@@ -19,12 +19,9 @@
     <!-- Vsebina -->
     <div class = "container">
 	<div class="wrapper">
-		<form action="" method="post" name="Login_Form" class="form-signin">       
+		<form action="../auth/preveri_registracijo" method="post" name="Login_Form" class="form-signin">       
 		    <h3 class="form-signin-heading">Registriraj se !</h3>
 			  
-              <input type="text" class="form-control" name="ime" placeholder="Ime" required="" autofocus="" />
-              <input type="text" class="form-control" name="priimek" placeholder="Priimek" required="" autofocus="" />
-              <input type="text" class="form-control" name="mail" placeholder="Mail" required="" autofocus="" />
               <input type="text" class="form-control" name="upor_ime" placeholder="Uporabniško ime" required="" autofocus="" />
 			  <input type="password" class="form-control" name="pass" placeholder="Geslo" required=""/>
 			 
