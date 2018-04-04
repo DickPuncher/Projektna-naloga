@@ -18,7 +18,6 @@
 
     <!-- Vsebina -->
     
-    <h1>Prijava</h1>
     <div class = "container">
 	<div class="wrapper">
 		<form action="../auth/preveri_prijavo" method="post" name="Login_Form" class="form-signin">       

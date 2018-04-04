@@ -25,6 +25,10 @@ class Glavna extends CI_Controller {
 	}
 
 	public function odjava(){
+		$this->session->unset_userdata('prijavljen');
+		$this->session->sess_destroy();
+		$this->load->view('prijava');
+
 		
 	}
 

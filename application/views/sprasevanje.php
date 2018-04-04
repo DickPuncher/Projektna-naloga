@@ -22,14 +22,31 @@
             <!-- Sekcija za vprasanja -->
             <div class="col-md-3 vprasanja">
                 <form action="" method="POST">
-                    <h1>Predmet</h1>
+                    <h1>Generiraj vprašanja</h1>
+                    <h3>
+                    Pozdravljen  
+                    <?php 
+                        echo $_SESSION['upor_ime'];
+                    
+                    ?>
+                    </h3>
                     <select name="predmet">
                         <!-- PHP za predmete -->
                         <?php 
-                        foreach ($data as $row){
-                            echo "<option value='$row'>$row</option>";
+                        $query = $this->db->query("SELECT * FROM predmeti");
+                        foreach ($query->result() as $row){
+                            echo "<option value='$row->id'>$row->ime_predmeta</option>";
                         }
                         ?>
+                    </select>
+                    <br>
+                    <select name="sklop">
+                    <?php 
+                        $query = $this->db->query("SELECT * FROM sklop");
+                        foreach ($query->result() as $row){
+                            echo "<option value='$row->id'>$row->ime_sklopa</option>";
+                        }
+                    ?>
                     </select>
                     <br>
 
@@ -44,7 +61,6 @@
                 <div class="col-md-6 odgovori2">Vprasanje 2</div>
                 <div class="col-md-6 odgovori3">Vprasanje 3</div>
                 <div class="col-md-6 odgovori4">Vprasanje 4</div>
-                <div class="col-md-12 poslji">Poslji odgovore</div>
             </div>
         </div>
     </div>
