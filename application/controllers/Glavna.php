@@ -13,7 +13,17 @@ class Glavna extends CI_Controller {
 	}
 
 	public function sprasevanje(){
-		$this->load->view('sprasevanje');
+		if(isset($_POST['sklop'])){
+			$query = $this->db->query('SELECT * FROM vprasanja'); /* spremeni */
+			$data = array();
+			for($i = 0; $i<4; $i+=1){
+				$data['vprasanje'.$i] = $query->result()[$i]->vprasanje;
+			}
+			$this->load->view('sprasevanje', $data);
+		}
+		else{
+			$this->load->view('sprasevanje');
+		}
 	}
 	
 	public function registracija(){
@@ -28,8 +38,5 @@ class Glavna extends CI_Controller {
 		$this->session->unset_userdata('prijavljen');
 		$this->session->sess_destroy();
 		$this->load->view('prijava');
-
-		
 	}
-
 }

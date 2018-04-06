@@ -27,7 +27,6 @@
                     Pozdravljen  
                     <?php 
                         echo $_SESSION['upor_ime'];
-                    
                     ?>
                     </h3>
                     <select name="predmet">
@@ -51,16 +50,47 @@
                     <br>
 
                     <input type="submit" value="Generiraj vprasanje">
+                    
                 </form>
             </div>
 
             <!-- Sekcija za odgovore -->
             <div class="col-md-9 vprasanja">
                 <h1 class="naslov">Sekcija za odgovore</h1>
-                <div class="col-md-6 odgovori1">Vprasanje 1</div>
-                <div class="col-md-6 odgovori2">Vprasanje 2</div>
-                <div class="col-md-6 odgovori3">Vprasanje 3</div>
-                <div class="col-md-6 odgovori4">Vprasanje 4</div>
+                <div class="col-md-6 odgovori1">
+                <?php if(isset($vprasanje0)){
+                    echo $vprasanje0;
+                }else{
+                    echo "Vprasanje 1";
+                }
+                ?>
+                </div>
+                <div class="col-md-6 odgovori2">
+                <?php if(isset($vprasanje1)){
+                    echo $vprasanje1;
+                }else{
+                    echo "Vprasanje 2";
+                }
+                ?>
+                </div>
+                <div class="col-md-6 odgovori3">
+                <?php if(isset($vprasanje2)){
+                    echo $vprasanje2;
+                }else{
+                    echo "Vprasanje 3";
+                }
+                ?>
+
+                
+                </div>
+                <div class="col-md-6 odgovori4">
+                <?php if(isset($vprasanje3)){
+                    echo $vprasanje3;
+                }else{
+                    echo "Vprasanje 4";
+                }
+                ?>
+                </div>
             </div>
         </div>
     </div>
