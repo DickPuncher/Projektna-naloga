@@ -11,11 +11,14 @@
             <?php 
             if(isset($_SESSION['prijavljen'])){
                 echo "<li><a href='sprasevanje'>Spraševanje</a></li>";
+                if(isset($_SESSION['admin'])){
+                    echo "<li><a href='upravljanje'>Upravljanje</a></li>";
+                }
                 echo "<li><a href='odjava'>Odjava</a></li>";
             }
             else{
                 echo "<li><a href='registracija'>Registracija</a></li>";
-                echo "<li><a href='prijava'>Prijava</a></li>";
+                echo "<li><a href='glavna/prijava'>Prijava</a></li>";
             }
             ?>
         </ul>

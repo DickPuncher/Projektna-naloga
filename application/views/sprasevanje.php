@@ -24,7 +24,7 @@
                 <form action="" method="POST">
                     <h1>Generiraj vprašanja</h1>
                     <h3>
-                    Pozdravljen  
+                    Pozdravljen
                     <?php 
                         echo $_SESSION['upor_ime'];
                     ?>
@@ -34,16 +34,16 @@
                         <?php 
                         $query = $this->db->query("SELECT * FROM predmeti");
                         foreach ($query->result() as $row){
-                            echo "<option value='$row->id'>$row->ime_predmeta</option>";
+                            echo "<option value='$row->id_predmeta'>$row->ime_predmeta</option>";
                         }
                         ?>
                     </select>
                     <br>
                     <select name="sklop">
                     <?php 
-                        $query = $this->db->query("SELECT * FROM sklop");
+                        $query = $this->db->query("SELECT * FROM sklopi");
                         foreach ($query->result() as $row){
-                            echo "<option value='$row->id'>$row->ime_sklopa</option>";
+                            echo "<option value='$row->id_sklopa'>$row->ime_sklopa</option>";
                         }
                     ?>
                     </select>
@@ -60,6 +60,10 @@
                 <div class="col-md-6 odgovori1">
                 <?php if(isset($vprasanje0)){
                     echo $vprasanje0;
+                ?>
+                <p id="odgovor1"></p>
+                <button onclick="pokaziOdgovor1('<?php echo $odgovor0; ?>')">Poakzi odgovore</button>
+                <?php
                 }else{
                     echo "Vprasanje 1";
                 }
@@ -68,6 +72,10 @@
                 <div class="col-md-6 odgovori2">
                 <?php if(isset($vprasanje1)){
                     echo $vprasanje1;
+                ?>
+                <p id="odgovor2"></p>
+                <button onclick="pokaziOdgovor2('<?php echo $odgovor1; ?>')">Poakzi odgovore</button>
+                <?php
                 }else{
                     echo "Vprasanje 2";
                 }
@@ -76,6 +84,10 @@
                 <div class="col-md-6 odgovori3">
                 <?php if(isset($vprasanje2)){
                     echo $vprasanje2;
+                ?>
+                <p id="odgovor3"></p>
+                <button onclick="pokaziOdgovor3('<?php echo $odgovor2; ?>')">Poakzi odgovore</button>
+                <?php
                 }else{
                     echo "Vprasanje 3";
                 }
@@ -86,6 +98,10 @@
                 <div class="col-md-6 odgovori4">
                 <?php if(isset($vprasanje3)){
                     echo $vprasanje3;
+                ?>
+                <p id="odgovor4"></p>
+                <button onclick="pokaziOdgovor4('<?php echo $odgovor3; ?>')">Poakzi odgovore</button>
+                <?php
                 }else{
                     echo "Vprasanje 4";
                 }
@@ -97,5 +113,22 @@
 
     <!-- Noga spletne strani -->
     <footer>Avtor: Žan Jurečič, Jaša Jovan; mentor: doc. dr. Uroš Ocepek; 2018 - Srednja tehniška in poklicna šola Trbovlje</footer>
+    <script>
+        function pokaziOdgovor1(odgovor){
+            document.getElementById("odgovor1").innerHTML = odgovor;
+        }
+
+        function pokaziOdgovor2(odgovor){
+            document.getElementById("odgovor2").innerHTML = odgovor;
+        }
+
+        function pokaziOdgovor3(odgovor){
+            document.getElementById("odgovor3").innerHTML = odgovor;
+        }
+
+        function pokaziOdgovor4(odgovor){
+            document.getElementById("odgovor4").innerHTML = odgovor;
+        }
+    </script>
 </body>
 </html>
