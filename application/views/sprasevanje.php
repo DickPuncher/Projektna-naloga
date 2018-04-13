@@ -62,7 +62,7 @@
                     echo $vprasanje0;
                 ?>
                 <p id="odgovor1"></p>
-                <button onclick="pokaziOdgovor1('<?php echo $odgovor0; ?>')">Poakzi odgovore</button>
+                <button onclick="pokaziOdgovor1('<?php echo $odgovor0; ?>')">Pokaži odgovor</button>
                 <?php
                 }else{
                     echo "Vprasanje 1";
@@ -74,7 +74,7 @@
                     echo $vprasanje1;
                 ?>
                 <p id="odgovor2"></p>
-                <button onclick="pokaziOdgovor2('<?php echo $odgovor1; ?>')">Poakzi odgovore</button>
+                <button onclick="pokaziOdgovor2('<?php echo $odgovor1; ?>')">Pokaži odgovor</button>
                 <?php
                 }else{
                     echo "Vprasanje 2";
@@ -86,7 +86,7 @@
                     echo $vprasanje2;
                 ?>
                 <p id="odgovor3"></p>
-                <button onclick="pokaziOdgovor3('<?php echo $odgovor2; ?>')">Poakzi odgovore</button>
+                <button onclick="pokaziOdgovor3('<?php echo $odgovor2; ?>')">Pokaži odgovor</button>
                 <?php
                 }else{
                     echo "Vprasanje 3";
@@ -100,7 +100,7 @@
                     echo $vprasanje3;
                 ?>
                 <p id="odgovor4"></p>
-                <button onclick="pokaziOdgovor4('<?php echo $odgovor3; ?>')">Poakzi odgovore</button>
+                <button onclick="pokaziOdgovor4('<?php echo $odgovor3; ?>')">Pokaži odgovor</button>
                 <?php
                 }else{
                     echo "Vprasanje 4";

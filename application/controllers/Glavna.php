@@ -17,6 +17,8 @@ class Glavna extends CI_Controller {
 	}
 
 	public function vnesi_vprasanje(){
+		if (!empty($_POST['vprasanje']) AND !empty($_POST['odgovor']) AND !empty($_POST['tocke'])) {
+		
 		$data = array(
 			'vprasanje' => $_POST['vprasanje'],
 			'odgovor' => $_POST['odgovor'],
@@ -26,28 +28,71 @@ class Glavna extends CI_Controller {
 		);
 		$this->db->insert('vprasanja', $data);
 		redirect('glavna/upravljanje', 'refresh');
+		}
+
+		else{
+			echo "<script type='text/javascript'>alert('Preverite, če ste izpolnili vsa polja');</script>";
+			redirect('glavna/upravljanje', 'refresh');
+		}
 	}
 
 	public function vnesi_predmet(){
-		$data = array(
-			'ime_predmeta' => $_POST['predmet']
-		);
-		$this->db->insert('predmeti', $data);
-		redirect('glavna/upravljanje', 'refresh');
+		if (!empty($_POST['predmet'])){
+			$data = array(
+				'ime_predmeta' => $_POST['predmet']
+			);
+			$this->db->insert('predmeti', $data);
+			redirect('glavna/upravljanje', 'refresh');
+		}
+		else{
+			echo "<script type='text/javascript'>alert('Preverite, če ste izpolnili vsa polja');</script>";
+			redirect('glavna/upravljanje', 'refresh');
+		}
 	}
 
 	public function vnesi_sklop(){
-		$data = array(
-			'ime_sklopa' => $_POST['sklop']
-		);
-		$this->db->insert('sklopi', $data);
-		redirect('glavna/upravljanje', 'refresh');
+		if (!empty($_POST['sklop'])){
+			$data = array(
+				'ime_sklopa' => $_POST['sklop']
+			);
+			$this->db->insert('sklopi', $data);
+			redirect('glavna/upravljanje', 'refresh');
+		}
+		else{
+			echo "<script type='text/javascript'>alert('Preverite, če ste izpolnili vsa polja');</script>";
+			redirect('glavna/upravljanje', 'refresh');
+		}
 	}
 
 	public function odstrani_vprasanje(){
 		$query = $this->db->delete('vprasanja', array('id_vprasanja' => $_POST['vprasanje']));
 		redirect('glavna/upravljanje', 'refresh');
 	}
+
+
+
+
+	public function spremeni_vprasanje(){
+		if (!empty($_POST['vprasanje']) OR !empty($_POST['odgovor']) OR !empty($_POST['tocke'])){
+			$id_vprasanja = $_POST['id_vprasanja'];
+			$vprasanje = $_POST['vprasanje'];
+			$odgovor = $_POST['odgovor'];
+			$st_tock = $_POST['tocke'];
+			$query = $this->db->query("UPDATE vprasanja SET vprasanje='$vprasanje', odgovor='$odgovor', st_tock='$st_tock' WHERE id_vprasanja='$id_vprasanja'");
+			redirect('glavna/upravljanje', 'refresh');
+		}
+		else{
+			echo "<script type='text/javascript'>alert('Preverite, če ste izpolnili vsa polja');</script>";
+			redirect('glavna/upravljanje', 'refresh');
+		}
+	}
+
+
+
+
+
+
+
 
 	public function odstrani_predmet(){
 		$query = $this->db->delete('predmeti', array('id_predmeta' => $_POST['predmet']));
@@ -64,7 +109,7 @@ class Glavna extends CI_Controller {
 			$sklop = $_POST['sklop'];
 			$predmet = $_POST['predmet'];
 
-			$query = $this->db->query("SELECT * FROM vprasanja WHERE id_sklopa = $sklop AND id_predmeta = $predmet"); /* spremeni */
+			$query = $this->db->query("SELECT * FROM vprasanja WHERE id_sklopa = $sklop AND id_predmeta = $predmet ORDER BY rand() LIMIT 4");
 			$data = array();
 			for($i = 0; $i<4; $i+=1){
 				$data['vprasanje'.$i] = $query->result()[$i]->vprasanje;

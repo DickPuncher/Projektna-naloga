@@ -22,7 +22,7 @@
             <div class="col-md-12 vprasanja">
                 <h1 class="naslov">Upravljanje</h1>
                 <div class="col-md-4 odgovori1">
-                    <h3>Dodaj vprasanje</h3>
+                    <h3>Dodaj vprašanje</h3>
                     <form action="vnesi_vprasanje" method="POST">
                         <select name="predmet">
                         <!-- PHP za predmete -->
@@ -44,16 +44,16 @@
                         </select>
                         <br>
                         <br>
-                        vprasanje
-                        <input class="vnesi" type="textarea" name="vprasanje">
+                        Vprašanje
+                        <input class="vnesi" type="textarea" name="vprasanje" style="margin-left:10px;">
                         <br>
-                        odgovor
-                        <input class="vnesi" type="textarea" name="odgovor">
+                        Odgovor
+                        <input class="vnesi" type="textarea" name="odgovor" style="margin-left:20px;">
                         <br>
-                        tocke
-                        <input class="vnesi" type="text" name="tocke">
+                        Točke
+                        <input class="vnesi" type="text" name="tocke" style="margin-left:35px;">
                         <br>
-                        <input type="submit" value="Dodaj vprasanje">
+                        <input type="submit" value="Dodaj vprasanje" style="margin-left:75px;"> 
                     </form>
                 </div>
                 <div class="col-md-4 odgovori2">
@@ -64,6 +64,7 @@
                         <input type="submit" value="Dodaj predmet">
                     </form>
                 </div>
+
                 <div class="col-md-4 odgovori2">
                     <h3>Dodaj sklop</h3>
                     <form action="vnesi_sklop" method="POST">
@@ -72,8 +73,9 @@
                         <input type="submit" value="Dodaj sklop">
                     </form>
                 </div>
+                
                 <div class="col-md-4 odgovori1">
-                    <h3>Odstrani vprasanje</h3>
+                    <h3>Odstrani vprašanje</h3>
                     <form action="odstrani_vprasanje" method="POST">
                         <select name="vprasanje">
                             <?php 
@@ -85,6 +87,33 @@
                         </select>
                         <input type="submit" value="Odstrani vprasanje">
                     </form>
+                                <h3>Spremeni vprašanje</h3>
+                    <form action="spremeni_vprasanje" method="POST">
+
+                    <select name="id_vprasanja">
+                            <?php 
+                                $query = $this->db->query("SELECT * FROM vprasanja ORDER BY id_predmeta ASC;");
+                                foreach ($query->result() as $row){
+                                    echo "<option value='$row->id_vprasanja'>$row->vprasanje</option>";
+                                }
+                            ?>
+                        </select>
+                        <br>
+                        Vprašanje
+                        <input class="vnesi" type="textarea" name="vprasanje" style="margin-left:10px;">
+                        <br>
+                        Odgovor
+                        <input class="vnesi" type="textarea" name="odgovor" style="margin-left:20px;">
+                        <br>
+                        Točke
+                        <input class="vnesi" type="text" name="tocke" style="margin-left:35px;">
+                        <br>
+                        <input type="submit" value="Spremeni vprašanje" style="margin-left:75px;" name="spremeni"> 
+                    </form>
+
+
+
+
                 </div>
                 <div class="col-md-4 odgovori4">
                     <h3>Odstrani predmet</h3>
@@ -113,6 +142,16 @@
                         </select>
                         <input type="submit" value="Odstrani sklop">
                     </form>
+
+
+                   
+
+
+
+
+
+
+
                 </div>
             </div>
         </div>
