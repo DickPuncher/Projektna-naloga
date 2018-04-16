@@ -45,7 +45,7 @@
                         <br>
                         <br>
                         Vprašanje
-                        <input class="vnesi" type="textarea" name="vprasanje" style="margin-left:10px;">
+                        <input  class="vnesi" type="textarea" name="vprasanje" style="margin-left:10px;">
                         <br>
                         Odgovor
                         <input class="vnesi" type="textarea" name="odgovor" style="margin-left:20px;">
@@ -53,7 +53,7 @@
                         Točke
                         <input class="vnesi" type="text" name="tocke" style="margin-left:35px;">
                         <br>
-                        <input type="submit" value="Dodaj vprasanje" style="margin-left:75px;"> 
+                        <button type="submit" class="btn btn-default" value="Dodaj vprasanje" style="margin-left:75px;">Dodaj vprašanje </button>
                     </form>
                 </div>
                 <div class="col-md-4 odgovori2">
@@ -61,7 +61,7 @@
                     <form action="vnesi_predmet" method="POST">
                         <input class="vnesi" type="text" name="predmet">
                         <br>
-                        <input type="submit" value="Dodaj predmet">
+                        <button  class="btn btn-default" type="submit" value="Dodaj predmet">Dodaj predmet </button>
                     </form>
                 </div>
 
@@ -70,11 +70,11 @@
                     <form action="vnesi_sklop" method="POST">
                         <input class="vnesi" type="text" name="sklop">
                         <br>
-                        <input type="submit" value="Dodaj sklop">
+                        <button   class="btn btn-default" type="submit" value="Dodaj sklop">Dodaj sklop</button>
                     </form>
                 </div>
                 
-                <div class="col-md-4 odgovori1">
+                <div class="col-md-4 odgovori5">
                     <h3>Odstrani vprašanje</h3>
                     <form action="odstrani_vprasanje" method="POST">
                         <select name="vprasanje">
@@ -85,7 +85,7 @@
                                 }
                             ?>
                         </select>
-                        <input type="submit" value="Odstrani vprasanje">
+                        <button  class="btn btn-default" type="submit" value="Odstrani vprasanje">Odstrani vprašanje</button>
                     </form>
                                 <h3>Spremeni vprašanje</h3>
                     <form action="spremeni_vprasanje" method="POST">
@@ -108,7 +108,7 @@
                         Točke
                         <input class="vnesi" type="text" name="tocke" style="margin-left:35px;">
                         <br>
-                        <input type="submit" value="Spremeni vprašanje" style="margin-left:75px;" name="spremeni"> 
+                        <button  class="btn btn-default" type="submit" value="Spremeni vprašanje" style="margin-left:75px;" name="spremeni">Spremeni vprašanje  </button>
                     </form>
 
 
@@ -126,7 +126,7 @@
                                 }
                             ?>
                         </select>
-                        <input type="submit" value="Odstrani predmet">
+                        <button  class="btn btn-default" type="submit" value="Odstrani predmet">Odstrani predmet</button>
                     </form>
                 </div>
                 <div class="col-md-4 odgovori4">
@@ -140,7 +140,7 @@
                                 }
                             ?>
                         </select>
-                        <input type="submit" value="Odstrani sklop">
+                        <button  class="btn btn-default" type="submit" value="Odstrani sklop">Odstrani sklop</button>
                     </form>
 
 
