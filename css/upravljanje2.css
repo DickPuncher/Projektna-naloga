@@ -1,16 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-html{
-    font-family: 'Roboto', sans-serif;
-}
 body{
     background-color: #dcdcdc;
 }
-
 .navbar-default, .navbar, .navbar-header{
     background-color:#0A1612;
     border: 0;
     margin-bottom: 0px !important;
+    
 }
 
 footer{
@@ -27,29 +24,32 @@ footer{
     padding-left: 20px;
 }
 
+
+
 .razmik-nav{
     margin-left: 30px;
     float: right;
 }
 
-.vprasanja{ 
+.vprasanja{
+    
     border-left: 1px solid black;
     height: 90vh;
 }
 
 .naslov{
     text-align: center;
-    font-family: 'Roboto', sans-serif;
 }
 
 .odgovori1{
-    height: 200px;
+    height: 350px;
     border: 1px solid black;
     background-color: #ffffff;
+    
 }
 
 .odgovori2{
-    height: 200px;
+    height: 350px;
     border-top: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
@@ -57,7 +57,7 @@ footer{
 }
 
 .odgovori3{
-    height: 200px;
+    height: 350px;
     border-left: 1px solid black;
     border-bottom: 1px solid black;
     border-right: 1px solid black;
@@ -65,18 +65,29 @@ footer{
 }
 
 .odgovori4{
-    height: 200px;
+    height: 350px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: #ffffff;
+}
+.odgovori5{
+    height: 350px;
+    border-left: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     background-color: #ffffff;
 }
 
-.poslji{
+.vnesi{
+    width: 300px;
     height: 50px;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    background-color: #ffffff;
-    text-align: center;
-    font-size: 30px;
+}
+
+input[type=textarea]{
+    height:30px;
+    
+}
+input[type=text]{
+    height:30px;
+    
 }

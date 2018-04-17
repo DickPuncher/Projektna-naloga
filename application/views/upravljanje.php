@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html>
 <head>
 <title>Ustno spraševanje</title>
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/upravljanje.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/upravljanje2.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -24,25 +23,19 @@
                 <div class="col-md-4 odgovori1">
                     <h3>Dodaj vprašanje</h3>
                     <form action="vnesi_vprasanje" method="POST">
-                        <select name="predmet">
+                        <select id="predmet" name="predmet" onChange="onSelectChange()">
                         <!-- PHP za predmete -->
                         <?php 
-                            $query = $this->db->query("SELECT * FROM predmeti");
+                            $query = $this->db->query("SELECT * FROM predmeti ORDER BY ime_predmeta");
                             foreach ($query->result() as $row){
-                                echo "<option value='$row->id_predmeta'>$row->ime_predmeta</option>";
+                                $query2 = $this->db->query("SELECT * FROM sklopi WHERE id_predmeta = $row->id_predmeta ORDER BY ime_sklopa");
+                                foreach($query2->result() as $row2){
+                                    $ime = $row->ime_predmeta." ".$row2->ime_sklopa;
+                                    echo "<option value='$row->id_predmeta;$row2->id_sklopa'>$ime</option>";
+                                }
                             }
                         ?>
                         </select>
-                        <br>
-                        <select name="sklop">
-                            <?php 
-                                $query = $this->db->query("SELECT * FROM sklopi");
-                                foreach ($query->result() as $row){
-                                    echo "<option value='$row->id_sklopa'>$row->ime_sklopa</option>";
-                                }
-                            ?>
-                        </select>
-                        <br>
                         <br>
                         Vprašanje
                         <input  class="vnesi" type="textarea" name="vprasanje" style="margin-left:10px;">
@@ -53,7 +46,7 @@
                         Točke
                         <input class="vnesi" type="text" name="tocke" style="margin-left:35px;">
                         <br>
-                        <button type="submit" class="btn btn-default" value="Dodaj vprasanje" style="margin-left:75px;">Dodaj vprašanje </button>
+                        <button type="submit" class="btn btn-default" value="Dodaj vprasanje" style="margin-left:75px;">Dodaj vprašanje</button>
                     </form>
                 </div>
                 <div class="col-md-4 odgovori2">
@@ -68,9 +61,19 @@
                 <div class="col-md-4 odgovori2">
                     <h3>Dodaj sklop</h3>
                     <form action="vnesi_sklop" method="POST">
-                        <input class="vnesi" type="text" name="sklop">
+                        <select name="id_predmeta">
+                        <!-- PHP za predmete -->
+                        <?php 
+                            $query = $this->db->query("SELECT * FROM predmeti");
+                            foreach ($query->result() as $row){
+                                echo "<option value='$row->id_predmeta'>$row->ime_predmeta</option>";
+                            }
+                        ?>
+                        </select>
                         <br>
-                        <button   class="btn btn-default" type="submit" value="Dodaj sklop">Dodaj sklop</button>
+                        <input class="vnesi" type="text" name="ime_sklopa">
+                        <br>
+                        <button class="btn btn-default" type="submit" value="Dodaj sklop">Dodaj sklop</button>
                     </form>
                 </div>
                 
@@ -87,7 +90,7 @@
                         </select>
                         <button  class="btn btn-default" type="submit" value="Odstrani vprasanje">Odstrani vprašanje</button>
                     </form>
-                                <h3>Spremeni vprašanje</h3>
+                    <h3>Spremeni vprašanje</h3>
                     <form action="spremeni_vprasanje" method="POST">
 
                     <select name="id_vprasanja">
@@ -142,16 +145,6 @@
                         </select>
                         <button  class="btn btn-default" type="submit" value="Odstrani sklop">Odstrani sklop</button>
                     </form>
-
-
-                   
-
-
-
-
-
-
-
                 </div>
             </div>
         </div>
@@ -160,4 +153,14 @@
     <!-- Noga spletne strani -->
     <footer>Avtor: Žan Jurečič, Jaša Jovan; mentor: doc. dr. Uroš Ocepek; 2018 - Srednja tehniška in poklicna šola Trbovlje</footer>
 </body>
-</html>
+    
+<script>
+    function onSelectChange() {
+    var value = document.getElementById("predmet").value;
+    if ((value == 'fotografia') || (value == 'filmagem')) {
+        document.getElementById('equipamento').style.display = 'block';
+    } else {
+        document.getElementById('equipamento').style.display = 'none';
+    }
+}
+</script>

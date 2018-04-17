@@ -32,24 +32,19 @@
                     <select name="predmet">
                         <!-- PHP za predmete -->
                         <?php 
-                        $query = $this->db->query("SELECT * FROM predmeti");
-                        foreach ($query->result() as $row){
-                            echo "<option value='$row->id_predmeta'>$row->ime_predmeta</option>";
-                        }
+                            $query = $this->db->query("SELECT * FROM predmeti ORDER BY ime_predmeta");
+                            foreach ($query->result() as $row){
+                                $query2 = $this->db->query("SELECT * FROM sklopi WHERE id_predmeta = $row->id_predmeta ORDER BY ime_sklopa");
+                                foreach($query2->result() as $row2){
+                                    $ime = $row->ime_predmeta." ".$row2->ime_sklopa;
+                                    echo "<option value='$row->id_predmeta;$row2->id_sklopa'>$ime</option>";
+                                }
+                            }
                         ?>
                     </select>
                     <br>
-                    <select name="sklop">
-                    <?php 
-                        $query = $this->db->query("SELECT * FROM sklopi");
-                        foreach ($query->result() as $row){
-                            echo "<option value='$row->id_sklopa'>$row->ime_sklopa</option>";
-                        }
-                    ?>
-                    </select>
-                    <br>
 
-                    <input type="submit" value="Generiraj vprasanje">
+                    <button class="btn btn-default" type="submit" value="Generiraj vprasanje">Generiraj vprašanja</button>
                     
                 </form>
             </div>
@@ -62,7 +57,7 @@
                     echo $vprasanje0;
                 ?>
                 <p id="odgovor1"></p>
-                <button onclick="pokaziOdgovor1('<?php echo $odgovor0; ?>')">Pokaži odgovor</button>
+                <button class="btn btn-default" onclick="pokaziOdgovor1('<?php echo $odgovor0; ?>')">Pokaži odgovor</button>
                 <?php
                 }else{
                     echo "Vprasanje 1";
@@ -74,7 +69,7 @@
                     echo $vprasanje1;
                 ?>
                 <p id="odgovor2"></p>
-                <button onclick="pokaziOdgovor2('<?php echo $odgovor1; ?>')">Pokaži odgovor</button>
+                <button class="btn btn-default" onclick="pokaziOdgovor2('<?php echo $odgovor1; ?>')">Pokaži odgovor</button>
                 <?php
                 }else{
                     echo "Vprasanje 2";
@@ -86,7 +81,7 @@
                     echo $vprasanje2;
                 ?>
                 <p id="odgovor3"></p>
-                <button onclick="pokaziOdgovor3('<?php echo $odgovor2; ?>')">Pokaži odgovor</button>
+                <button class="btn btn-default" onclick="pokaziOdgovor3('<?php echo $odgovor2; ?>')">Pokaži odgovor</button>
                 <?php
                 }else{
                     echo "Vprasanje 3";
@@ -100,7 +95,7 @@
                     echo $vprasanje3;
                 ?>
                 <p id="odgovor4"></p>
-                <button onclick="pokaziOdgovor4('<?php echo $odgovor3; ?>')">Pokaži odgovor</button>
+                <button class="btn btn-default" onclick="pokaziOdgovor4('<?php echo $odgovor3; ?>')">Pokaži odgovor</button>
                 <?php
                 }else{
                     echo "Vprasanje 4";

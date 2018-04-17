@@ -18,16 +18,16 @@ class Glavna extends CI_Controller {
 
 	public function vnesi_vprasanje(){
 		if (!empty($_POST['vprasanje']) AND !empty($_POST['odgovor']) AND !empty($_POST['tocke'])) {
-		
-		$data = array(
-			'vprasanje' => $_POST['vprasanje'],
-			'odgovor' => $_POST['odgovor'],
-			'st_tock' => $_POST['tocke'],
-			'id_predmeta' => $_POST['predmet'],
-			'id_sklopa' => $_POST['sklop']
-		);
-		$this->db->insert('vprasanja', $data);
-		redirect('glavna/upravljanje', 'refresh');
+            $split = explode(";", $_POST['predmet']);
+            $data = array(
+                'vprasanje' => $_POST['vprasanje'],
+                'odgovor' => $_POST['odgovor'],
+                'st_tock' => $_POST['tocke'],
+                'id_predmeta' => $split[0],
+                'id_sklopa' => $split[1]
+            );
+            $this->db->insert('vprasanja', $data);
+            redirect('glavna/upravljanje', 'refresh');
 		}
 
 		else{
@@ -51,9 +51,10 @@ class Glavna extends CI_Controller {
 	}
 
 	public function vnesi_sklop(){
-		if (!empty($_POST['sklop'])){
+		if (!empty($_POST['ime_sklopa'])){
 			$data = array(
-				'ime_sklopa' => $_POST['sklop']
+				'ime_sklopa' => $_POST['ime_sklopa'],
+                'id_predmeta' => $_POST['id_predmeta']
 			);
 			$this->db->insert('sklopi', $data);
 			redirect('glavna/upravljanje', 'refresh');
@@ -105,9 +106,10 @@ class Glavna extends CI_Controller {
 	}
 
 	public function sprasevanje(){
-		if(isset($_POST['sklop'])){
-			$sklop = $_POST['sklop'];
-			$predmet = $_POST['predmet'];
+		if(isset($_POST['predmet'])){
+            $split = explode(";", $_POST['predmet']);
+            $sklop = $split[1];
+            $predmet = $split[0];
 
 			$query = $this->db->query("SELECT * FROM vprasanja WHERE id_sklopa = $sklop AND id_predmeta = $predmet ORDER BY rand() LIMIT 4");
 			$data = array();
