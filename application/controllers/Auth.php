@@ -37,6 +37,7 @@ class Auth extends CI_Controller {
             if($query2->num_rows() == 1){
                 $_SESSION['admin'] = TRUE;
             }
+            $_SESSION['id_upor'] = $query->result()[0]->id_uporabnika;
             $_SESSION['upor_ime'] = $upor_ime;
             $_SESSION['prijavljen'] = TRUE;
             header("Location: ../glavna/domov");

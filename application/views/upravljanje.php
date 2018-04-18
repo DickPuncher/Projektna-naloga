@@ -21,23 +21,41 @@
             <div class="col-md-12 vprasanja">
                 <h1 class="naslov">Upravljanje</h1>
                 <div class="col-md-4 odgovori1">
+                    
                     <h3>Dodaj vprašanje</h3>
-                    <form action="vnesi_vprasanje" method="POST">
-                        <select id="predmet" name="predmet" onChange="onSelectChange()">
-                        <!-- PHP za predmete -->
-                        <?php 
-                            $query = $this->db->query("SELECT * FROM predmeti ORDER BY ime_predmeta");
-                            foreach ($query->result() as $row){
-                                $query2 = $this->db->query("SELECT * FROM sklopi WHERE id_predmeta = $row->id_predmeta ORDER BY ime_sklopa");
-                                foreach($query2->result() as $row2){
-                                    $ime = $row->ime_predmeta." ".$row2->ime_sklopa;
-                                    echo "<option value='$row->id_predmeta;$row2->id_sklopa'>$ime</option>";
-                                }
+                    <form action="" method="POST">
+                    <?php
+                    $query = $this->db->query("SELECT * FROM predmeti ORDER BY ime_predmeta");
+                        $options = array();
+                        foreach ($query->result() as $row){
+                            $options[$row->id_predmeta] = $row->ime_predmeta;
+                        }
+                    
+                        echo form_dropdown('predmet', $options, $query->result()[0]->id_predmeta);
+                    ?>
+                    <button class="btn btn-default" name="izberi_sklop" type="submit" value="Generiraj vprasanje">Izberi sklop</button>
+                </form>
+                
+                <form action="vnesi_vprasanje" method="POST">
+                    <?php
+                        if(isset($sklopi)){
+                            $options2 = array();
+                            foreach ($sklopi as $sklop){
+                                $options2[$sklop] = $sklop;
                             }
-                        ?>
-                        </select>
-                        <br>
-                        Vprašanje
+                        }
+                        else{
+                            $options2 = array();
+                            $options2['1'] = 'Ni izbranega sklopa';
+                        }
+                        if(isset($id_predm)){
+                            echo "<input type='hidden' name='predm' value='$id_predm'>";
+                        }
+                        echo form_dropdown('sklop', $options2, $query->result()[0]->id_predmeta);
+                        
+                    ?>
+                    <br>
+                    Vprašanje
                         <input  class="vnesi" type="textarea" name="vprasanje" style="margin-left:10px;">
                         <br>
                         Odgovor
@@ -46,7 +64,10 @@
                         Točke
                         <input class="vnesi" type="text" name="tocke" style="margin-left:35px;">
                         <br>
-                        <button type="submit" class="btn btn-default" value="Dodaj vprasanje" style="margin-left:75px;">Dodaj vprašanje</button>
+                        <button type="submit" class="btn btn-default" name="dodaj" value="Dodaj vprasanje" style="margin-left:75px;">Dodaj vprašanje</button>
+                    <br>
+                </form>
+                        <br>
                     </form>
                 </div>
                 <div class="col-md-4 odgovori2">
@@ -139,7 +160,7 @@
                             <?php 
                                 $query = $this->db->query("SELECT * FROM sklopi");
                                 foreach ($query->result() as $row){
-                                    echo "<option value='$row->id_sklopa'>$row->ime_sklopa</option>";
+                                    echo "<option value='$row->id_sklopa'>$row-> $row->ime_sklopa</option>";
                                 }
                             ?>
                         </select>

@@ -13,21 +13,43 @@ class Glavna extends CI_Controller {
 	}
 
 	public function upravljanje(){
-		$this->load->view('upravljanje');
+		if(isset($_POST['izberi_sklop'])){
+            $id_predmeta = $_POST['predmet'];
+            $query = $this->db->query("SELECT * FROM sklopi WHERE id_predmeta = $id_predmeta");
+            $data = array();
+            $sklopi = array();
+            foreach($query->result() as $row){
+                $sklopi[$row->ime_sklopa] = $row->ime_sklopa;
+            }
+            $data['sklopi'] = $sklopi;
+            $data['id_predm'] = $id_predmeta;
+            
+            $this->load->view('upravljanje', $data);
+            return;
+        }
+		else{
+			$this->load->view('upravljanje');
+		}
 	}
 
 	public function vnesi_vprasanje(){
 		if (!empty($_POST['vprasanje']) AND !empty($_POST['odgovor']) AND !empty($_POST['tocke'])) {
-            $split = explode(";", $_POST['predmet']);
-            $data = array(
-                'vprasanje' => $_POST['vprasanje'],
-                'odgovor' => $_POST['odgovor'],
-                'st_tock' => $_POST['tocke'],
-                'id_predmeta' => $split[0],
-                'id_sklopa' => $split[1]
-            );
-            $this->db->insert('vprasanja', $data);
-            redirect('glavna/upravljanje', 'refresh');
+            if(isset($_POST['dodaj'])){
+				$id_predmeta = $_POST['predm'];
+				$ime_sklopa = $_POST['sklop'];
+				$query = $this->db->query("SELECT * FROM sklopi WHERE id_predmeta = $id_predmeta AND ime_sklopa = '$ime_sklopa'");
+				$id_sklopa = $query->result()[0]->id_sklopa;
+
+            	$data = array(
+                	'vprasanje' => $_POST['vprasanje'],
+                	'odgovor' => $_POST['odgovor'],
+                	'st_tock' => $_POST['tocke'],
+                	'id_predmeta' => $id_predmeta,
+                	'id_sklopa' => $id_sklopa
+            	);
+            	$this->db->insert('vprasanja', $data);
+            	redirect('glavna/upravljanje', 'refresh');
+			}
 		}
 
 		else{
@@ -96,33 +118,96 @@ class Glavna extends CI_Controller {
 
 
 	public function odstrani_predmet(){
-		$query = $this->db->delete('predmeti', array('id_predmeta' => $_POST['predmet']));
+		$id_predmeta = $_POST['predmet'];
+		$query = $this->db->query("DELETE FROM vprasanja WHERE id_predmeta = $id_predmeta");
+		$query = $this->db->query("DELETE FROM sklopi WHERE id_predmeta = $id_predmeta");
+		$query = $this->db->delete('predmeti', array('id_predmeta' => $id_sklopa));
+
 		redirect('glavna/upravljanje', 'refresh');
 	}
 
 	public function odstrani_sklop(){
-		$query = $this->db->delete('sklopi', array('id_sklopa' => $_POST['sklop']));
+		$id_sklopa = $_POST['sklop'];
+		$query = $this->db->query("DELETE FROM vprasanja WHERE id_sklopa = $id_sklopa");
+		$query = $this->db->delete('sklopi', array('id_sklopa' => $id_sklopa));
 		redirect('glavna/upravljanje', 'refresh');
 	}
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
 	public function sprasevanje(){
-		if(isset($_POST['predmet'])){
-            $split = explode(";", $_POST['predmet']);
-            $sklop = $split[1];
-            $predmet = $split[0];
+        if(isset($_POST['izberi_sklop'])){
+            $id_predmeta = $_POST['predmet'];
+            $query = $this->db->query("SELECT * FROM sklopi WHERE id_predmeta = $id_predmeta");
+            $data = array();
+            $sklopi = array();
+            foreach($query->result() as $row){
+                $sklopi[$row->ime_sklopa] = $row->ime_sklopa;
+            }
+            $data['sklopi'] = $sklopi;
+            $data['id_predm'] = $id_predmeta;
+            
+            $this->load->view('sprasevanje', $data);
+			
+			return;
 
-			$query = $this->db->query("SELECT * FROM vprasanja WHERE id_sklopa = $sklop AND id_predmeta = $predmet ORDER BY rand() LIMIT 4");
+        }
+		if(isset($_POST['generiraj'])){
+            $id_predmeta = $_POST['predm'];
+            $ime_sklopa = $_POST['sklop'];
+            $query = $this->db->query("SELECT * FROM sklopi WHERE ime_sklopa = '$ime_sklopa' AND id_predmeta = $id_predmeta");
+            $id_sklopa = $query->result()[0]->id_sklopa;
+
+            $query = $this->db->query("SELECT * FROM vprasanja WHERE id_sklopa = $id_sklopa AND id_predmeta = $id_predmeta ORDER BY rand() LIMIT 4");
+
 			$data = array();
+			$uporabnik = $_SESSION['id_upor'];
+			$query2 = $this->db->query("SELECT * FROM evidenca WHERE id_uporabnika=$uporabnik");
+			if($query2->num_rows() == 0){
+				for($i = 0; $i<4; $i+=1){
+					$id = $query->result()[$i]->id_vprasanja;
+					$query3 = $this->db->query("INSERT INTO evidenca VALUES ('', '$uporabnik', $id)");
+				}
+			}
+			else{
+				$query = $this->db->query("SELECT * FROM vprasanja WHERE id_vprasanja NOT IN (SELECT id_vprasanja FROM evidenca WHERE id_uporabnika=$uporabnik) ORDER BY rand() LIMIT 4");
+				$this->db->query("DELETE FROM evidenca WHERE id_uporabnika = $uporabnik");
+				for($i = 0; $i<4; $i+=1){
+					$id = $query->result()[$i]->id_vprasanja;
+					$query3 = $this->db->query("INSERT INTO evidenca VALUES ('', '$uporabnik', $id)");
+				}
+			}
 			for($i = 0; $i<4; $i+=1){
 				$data['vprasanje'.$i] = $query->result()[$i]->vprasanje;
 				$data['odgovor'.$i] = $query->result()[$i]->odgovor;
 			}
+			
 			$this->load->view('sprasevanje', $data);
+			
 		}
 		else{
 			$this->load->view('sprasevanje');
 		}
 	}
+		
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 	
 	public function registracija(){
 		$this->load->view('registracija');
