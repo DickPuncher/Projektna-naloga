@@ -160,37 +160,42 @@ class Glavna extends CI_Controller {
 
         }
 		if(isset($_POST['generiraj'])){
-            $id_predmeta = $_POST['predm'];
-            $ime_sklopa = $_POST['sklop'];
-            $query = $this->db->query("SELECT * FROM sklopi WHERE ime_sklopa = '$ime_sklopa' AND id_predmeta = $id_predmeta");
-            $id_sklopa = $query->result()[0]->id_sklopa;
+			if(isset($_POST['predm'])){
+				$id_predmeta = $_POST['predm'];
+				$ime_sklopa = $_POST['sklop'];
+				$query = $this->db->query("SELECT * FROM sklopi WHERE ime_sklopa = '$ime_sklopa' AND id_predmeta = $id_predmeta");
+				$id_sklopa = $query->result()[0]->id_sklopa;
 
-            $query = $this->db->query("SELECT * FROM vprasanja WHERE id_sklopa = $id_sklopa AND id_predmeta = $id_predmeta ORDER BY rand() LIMIT 4");
+				$query = $this->db->query("SELECT * FROM vprasanja WHERE id_sklopa = $id_sklopa AND id_predmeta = $id_predmeta ORDER BY rand() LIMIT 4");
 
-			$data = array();
-			$uporabnik = $_SESSION['id_upor'];
-			$query2 = $this->db->query("SELECT * FROM evidenca WHERE id_uporabnika=$uporabnik");
-			if($query2->num_rows() == 0){
-				for($i = 0; $i<4; $i+=1){
-					$id = $query->result()[$i]->id_vprasanja;
-					$query3 = $this->db->query("INSERT INTO evidenca VALUES ('', '$uporabnik', $id)");
+				$data = array();
+				$uporabnik = $_SESSION['id_upor'];
+				$query2 = $this->db->query("SELECT * FROM evidenca WHERE id_uporabnika=$uporabnik");
+				if($query2->num_rows() == 0){
+					for($i = 0; $i<4; $i+=1){
+						$id = $query->result()[$i]->id_vprasanja;
+						$query3 = $this->db->query("INSERT INTO evidenca VALUES ('', '$uporabnik', $id)");
+					}
 				}
+				else{
+					$query = $this->db->query("SELECT * FROM vprasanja WHERE id_vprasanja NOT IN (SELECT id_vprasanja FROM evidenca WHERE id_uporabnika=$uporabnik) ORDER BY rand() LIMIT 4");
+					$this->db->query("DELETE FROM evidenca WHERE id_uporabnika = $uporabnik");
+					for($i = 0; $i<4; $i+=1){
+						$id = $query->result()[$i]->id_vprasanja;
+						$query3 = $this->db->query("INSERT INTO evidenca VALUES ('', '$uporabnik', $id)");
+					}
+				}
+				for($i = 0; $i<4; $i+=1){
+					$data['vprasanje'.$i] = $query->result()[$i]->vprasanje;
+					$data['odgovor'.$i] = $query->result()[$i]->odgovor;
+				}
+				
+				$this->load->view('sprasevanje', $data);
+				
 			}
 			else{
-				$query = $this->db->query("SELECT * FROM vprasanja WHERE id_vprasanja NOT IN (SELECT id_vprasanja FROM evidenca WHERE id_uporabnika=$uporabnik) ORDER BY rand() LIMIT 4");
-				$this->db->query("DELETE FROM evidenca WHERE id_uporabnika = $uporabnik");
-				for($i = 0; $i<4; $i+=1){
-					$id = $query->result()[$i]->id_vprasanja;
-					$query3 = $this->db->query("INSERT INTO evidenca VALUES ('', '$uporabnik', $id)");
-				}
+				$this->load->view('sprasevanje');
 			}
-			for($i = 0; $i<4; $i+=1){
-				$data['vprasanje'.$i] = $query->result()[$i]->vprasanje;
-				$data['odgovor'.$i] = $query->result()[$i]->odgovor;
-			}
-			
-			$this->load->view('sprasevanje', $data);
-			
 		}
 		else{
 			$this->load->view('sprasevanje');

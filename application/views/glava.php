@@ -7,7 +7,6 @@
             <a class="navbar-brand razmik-brand" href="#">Ustno Spraševanje</a>
         </div>
         <ul class="nav navbar-nav razmik-nav">
-            <li><a href="<?php echo base_url();?>index.php/glavna/domov">Domov</a></li>
             <?php 
             if(isset($_SESSION['prijavljen'])){
                 echo "<li><a href='".base_url()."glavna/sprasevanje'>Spraševanje</a></li>";

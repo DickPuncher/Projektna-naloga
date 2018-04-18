@@ -40,7 +40,7 @@ class Auth extends CI_Controller {
             $_SESSION['id_upor'] = $query->result()[0]->id_uporabnika;
             $_SESSION['upor_ime'] = $upor_ime;
             $_SESSION['prijavljen'] = TRUE;
-            header("Location: ../glavna/domov");
+            header("Location: ../glavna/sprasevanje");
         }
         else{
             header("Location: ../glavna/prijava");

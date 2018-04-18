@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/projektna.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/projektna2.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -30,11 +30,11 @@
                             $options[$row->id_predmeta] = $row->ime_predmeta;
                         }
                     
-                        echo form_dropdown('predmet', $options, $query->result()[0]->id_predmeta);
+                        echo form_dropdown('predmet', $options, $query->result()[0]->id_predmeta, "class='form-control' id='sel1' style=width:60%;");
                     ?>
-                    <button class="btn btn-default" name="izberi_sklop" type="submit" value="Generiraj vprasanje">Izberi sklop</button>
+                    <button class="btn btn-default" style="width:60%; background-color: #efefef;" name="izberi_sklop" type="submit" value="Generiraj vprasanje">Izberi sklop</button>
                 </form>
-                
+                <br>
                 <form action="" method="POST">
                     <?php
                         if(isset($sklopi)){
@@ -50,10 +50,9 @@
                         if(isset($id_predm)){
                             echo "<input type='hidden' name='predm' value='$id_predm'>";
                         }
-                        echo form_dropdown('sklop', $options2, $query->result()[0]->id_predmeta);
+                        echo form_dropdown('sklop', $options2, $query->result()[0]->id_predmeta, "class='form-control' id='sel1' style=width:60%;");
                     ?>
-                    <br>
-                    <button class="btn btn-default" name="generiraj" type="submit" value="Generiraj vprasanje">Generiraj vprašanja</button>
+                    <button class="btn btn-default" style="width:60%; background-color: #efefef;" name="generiraj" type="submit" value="Generiraj vprasanje">Generiraj vprašanja</button>
                 </form>
             </div>
 
@@ -130,11 +129,6 @@
         function pokaziOdgovor4(odgovor){
             document.getElementById("odgovor4").innerHTML = odgovor;
         }
-        
-        function submitForm(elem) {
-          if (elem.value) {
-              elem.form.submit();
-          }
       }
     </script>
 </body>

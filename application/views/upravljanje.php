@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/upravljanje2.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/upravljanje3.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -31,11 +31,13 @@
                             $options[$row->id_predmeta] = $row->ime_predmeta;
                         }
                     
-                        echo form_dropdown('predmet', $options, $query->result()[0]->id_predmeta);
+                        echo form_dropdown('predmet', $options, $query->result()[0]->id_predmeta,  "class='form-control' id='sel1' style=width:60%;");
                     ?>
+                    <br>
                     <button class="btn btn-default" name="izberi_sklop" type="submit" value="Generiraj vprasanje">Izberi sklop</button>
                 </form>
                 
+                <br>
                 <form action="vnesi_vprasanje" method="POST">
                     <?php
                         if(isset($sklopi)){
@@ -51,20 +53,20 @@
                         if(isset($id_predm)){
                             echo "<input type='hidden' name='predm' value='$id_predm'>";
                         }
-                        echo form_dropdown('sklop', $options2, $query->result()[0]->id_predmeta);
+                        echo form_dropdown('sklop', $options2, $query->result()[0]->id_predmeta, "class='form-control' id='sel1' style=width:60%;");
                         
                     ?>
-                    <br>
-                    Vprašanje
-                        <input  class="vnesi" type="textarea" name="vprasanje" style="margin-left:10px;">
-                        <br>
-                        Odgovor
-                        <input class="vnesi" type="textarea" name="odgovor" style="margin-left:20px;">
-                        <br>
-                        Točke
-                        <input class="vnesi" type="text" name="tocke" style="margin-left:35px;">
-                        <br>
-                        <button type="submit" class="btn btn-default" name="dodaj" value="Dodaj vprasanje" style="margin-left:75px;">Dodaj vprašanje</button>
+                    
+                   
+                        <input  class="vnesi form-control" type="textarea" name="vprasanje" placeholder="Vprašanje" >
+                        
+                        
+                        <input class="vnesi form-control"  type="textarea" name="odgovor" placeholder="Odgovor" >
+                     
+                        
+                        <input class="vnesi form-control" type="text" name="tocke" placeholder="Točke" >
+                       <br>
+                        <button type="submit" class="btn btn-default" name="dodaj" value="Dodaj vprasanje">Dodaj vprašanje</button>
                     <br>
                 </form>
                         <br>
@@ -73,7 +75,7 @@
                 <div class="col-md-4 odgovori2">
                     <h3>Dodaj predmet</h3>
                     <form action="vnesi_predmet" method="POST">
-                        <input class="vnesi" type="text" name="predmet">
+                        <input class="vnesi form-control" type="text" name="predmet">
                         <br>
                         <button  class="btn btn-default" type="submit" value="Dodaj predmet">Dodaj predmet </button>
                     </form>
@@ -82,7 +84,7 @@
                 <div class="col-md-4 odgovori2">
                     <h3>Dodaj sklop</h3>
                     <form action="vnesi_sklop" method="POST">
-                        <select name="id_predmeta">
+                        <select name="id_predmeta" class='form-control' id='sel1' style=width:60%;>
                         <!-- PHP za predmete -->
                         <?php 
                             $query = $this->db->query("SELECT * FROM predmeti");
@@ -91,8 +93,7 @@
                             }
                         ?>
                         </select>
-                        <br>
-                        <input class="vnesi" type="text" name="ime_sklopa">
+                        <input class="vnesi form-control" type="text" name="ime_sklopa" style=width:60%;>
                         <br>
                         <button class="btn btn-default" type="submit" value="Dodaj sklop">Dodaj sklop</button>
                     </form>
@@ -101,7 +102,7 @@
                 <div class="col-md-4 odgovori5">
                     <h3>Odstrani vprašanje</h3>
                     <form action="odstrani_vprasanje" method="POST">
-                        <select name="vprasanje">
+                        <select name="vprasanje" class='form-control' id='sel1' style=width:60%;>
                             <?php 
                                 $query = $this->db->query("SELECT * FROM vprasanja");
                                 foreach ($query->result() as $row){
@@ -109,12 +110,13 @@
                                 }
                             ?>
                         </select>
+                        <br>
                         <button  class="btn btn-default" type="submit" value="Odstrani vprasanje">Odstrani vprašanje</button>
                     </form>
                     <h3>Spremeni vprašanje</h3>
                     <form action="spremeni_vprasanje" method="POST">
 
-                    <select name="id_vprasanja">
+                    <select name="id_vprasanja" class='form-control' id='sel1' style=width:60%;>
                             <?php 
                                 $query = $this->db->query("SELECT * FROM vprasanja ORDER BY id_predmeta ASC;");
                                 foreach ($query->result() as $row){
@@ -122,17 +124,17 @@
                                 }
                             ?>
                         </select>
+                        
+                        
+                        <input class="vnesi form-control" type="textarea" name="vprasanje"   placeholder="Vprašanje">
+                        
+                        
+                        <input class="vnesi form-control" type="textarea" name="odgovor" placeholder="Odgovor" >
+                      
+                        
+                        <input class="vnesi form-control" type="text" name="tocke"  placeholder="Točke">
                         <br>
-                        Vprašanje
-                        <input class="vnesi" type="textarea" name="vprasanje" style="margin-left:10px;">
-                        <br>
-                        Odgovor
-                        <input class="vnesi" type="textarea" name="odgovor" style="margin-left:20px;">
-                        <br>
-                        Točke
-                        <input class="vnesi" type="text" name="tocke" style="margin-left:35px;">
-                        <br>
-                        <button  class="btn btn-default" type="submit" value="Spremeni vprašanje" style="margin-left:75px;" name="spremeni">Spremeni vprašanje  </button>
+                        <button  class="btn btn-default" type="submit" value="Spremeni vprašanje" name="spremeni">Spremeni vprašanje  </button>
                     </form>
 
 
@@ -142,7 +144,7 @@
                 <div class="col-md-4 odgovori4">
                     <h3>Odstrani predmet</h3>
                     <form action="odstrani_predmet" method="POST">
-                        <select name="predmet">
+                        <select name="predmet" class='form-control' id='sel1' style=width:60%;>
                             <?php 
                                 $query = $this->db->query("SELECT * FROM predmeti");
                                 foreach ($query->result() as $row){
@@ -150,20 +152,22 @@
                                 }
                             ?>
                         </select>
+                        <br>
                         <button  class="btn btn-default" type="submit" value="Odstrani predmet">Odstrani predmet</button>
                     </form>
                 </div>
                 <div class="col-md-4 odgovori4">
                     <h3>Odstrani sklop</h3>
                     <form action="odstrani_sklop" method="POST">
-                        <select name="sklop">
+                        <select name="sklop" class='form-control' id='sel1' style=width:60%;>
                             <?php 
                                 $query = $this->db->query("SELECT * FROM sklopi");
                                 foreach ($query->result() as $row){
-                                    echo "<option value='$row->id_sklopa'>$row-> $row->ime_sklopa</option>";
+                                    echo "<option value='$row->id_sklopa'>$row->ime_sklopa</option>";
                                 }
                             ?>
                         </select>
+                        <br>
                         <button  class="btn btn-default" type="submit" value="Odstrani sklop">Odstrani sklop</button>
                     </form>
                 </div>

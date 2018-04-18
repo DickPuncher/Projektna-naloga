@@ -1,10 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-html{
-    font-family: 'Roboto', sans-serif;
-}
 body{
     background-color: #dcdcdc;
+    
 }
 
 .navbar-default, .navbar, .navbar-header{
@@ -15,11 +13,20 @@ body{
 
 .form-control{
     width: 70%;
+    font-family: 'Roboto', sans-serif;
 }
 .vprasanja h1{
     font-family: 'Roboto', sans-serif;
-    background-color: red;
 }
+
+.btn-default {
+    font-family: 'Roboto', sans-serif;
+}
+
+.vprasanja h3{
+    font-family: 'Roboto', sans-serif;
+}
+
 footer{
     position: fixed;
     right: 0;
@@ -28,6 +35,7 @@ footer{
     padding: 1rem;
     background-color: #efefef;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
 }
 
 .razmik-brand{
@@ -53,6 +61,7 @@ footer{
     height: 200px;
     border: 1px solid black;
     background-color: #ffffff;
+    font-family: 'Roboto', sans-serif;
 }
 
 .odgovori2{
@@ -60,6 +69,7 @@ footer{
     border-top: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
+    font-family: 'Roboto', sans-serif;
     background-color: #ffffff;
 }
 
@@ -68,6 +78,7 @@ footer{
     border-left: 1px solid black;
     border-bottom: 1px solid black;
     border-right: 1px solid black;
+    font-family: 'Roboto', sans-serif;
     background-color: #ffffff;
 }
 
@@ -85,5 +96,6 @@ footer{
     border-bottom: 1px solid black;
     background-color: #ffffff;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
     font-size: 30px;
 }
