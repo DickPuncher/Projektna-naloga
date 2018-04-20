@@ -22,8 +22,8 @@
 		<form action="../auth/preveri_registracijo" method="post" name="Login_Form" class="form-signin">       
 		    <h3 class="form-signin-heading">Registriraj se !</h3>
 			  
-              <input type="text" class="form-control" name="upor_ime" placeholder="Uporabniško ime" required="" autofocus="" />
-			  <input type="password" class="form-control" name="pass" placeholder="Geslo" required=""/>
+              <input type="text" style="width: 100%;" class="form-control" name="upor_ime" placeholder="Uporabniško ime" required="" autofocus="" />
+			  <input type="password" style="width: 100%;" class="form-control" name="pass" placeholder="Geslo" required=""/>
 			 
 			  <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Prijavi se</button>  			
 		</form>			

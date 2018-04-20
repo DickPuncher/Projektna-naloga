@@ -32,7 +32,7 @@
                     
                         echo form_dropdown('predmet', $options, $query->result()[0]->id_predmeta, "class='form-control' id='sel1' style=width:60%;");
                     ?>
-                    <button class="btn btn-default" style="width:60%; background-color: #efefef;" name="izberi_sklop" type="submit" value="Generiraj vprasanje">Izberi sklop</button>
+                    <button class="btn btn-default" style="width:60%; background-color: #efefef;" name="izberi_sklop" type="submit">Izberi predmet</button>
                 </form>
                 <br>
                 <form action="" method="POST">

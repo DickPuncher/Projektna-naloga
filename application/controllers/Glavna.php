@@ -5,11 +5,7 @@ class Glavna extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('index');
-	}
-
-	public function domov(){
-		$this->load->view('index');
+		$this->load->view('prijava');
 	}
 
 	public function upravljanje(){
@@ -155,7 +151,6 @@ class Glavna extends CI_Controller {
             $data['id_predm'] = $id_predmeta;
             
             $this->load->view('sprasevanje', $data);
-			
 			return;
 
         }
